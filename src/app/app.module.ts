@@ -6,7 +6,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { TvComponent } from './components/tv/tv.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { ElementComponent } from './components/element/element.component';
-import { CreateComponent } from './components/element/create/create.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,7 @@ import { CreateComponent } from './components/element/create/create.component';
     TvComponent,
     PlaylistComponent,
     ElementComponent,
-    CreateComponent
+
   ],
   imports: [
     BrowserModule
