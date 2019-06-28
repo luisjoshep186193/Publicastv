@@ -6,6 +6,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { TvComponent } from './components/tv/tv.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { ElementComponent } from './components/element/element.component';
+import { NewComponent } from './components/element/new/new.component';
+import { CreateComponent } from './components/playlist/create/create.component';
+import { MytvComponent } from './components/mytv/mytv.component';
+import { RoutesModule } from './routes.module';
 
 @NgModule({
   declarations: [
@@ -14,10 +18,14 @@ import { ElementComponent } from './components/element/element.component';
     TvComponent,
     PlaylistComponent,
     ElementComponent,
+    NewComponent,
+    CreateComponent,
+    MytvComponent
 
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RoutesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
