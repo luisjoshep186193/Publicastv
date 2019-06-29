@@ -16,7 +16,7 @@
 
         <div class="card-columns">
             <!--*ngFor="let item of items | async"-->
-            <app-element-card [caller]="CARPETA_FILES" (addItem)="addItemToList( $event )" (itemId)="setCurrentItem( $event )" (removeItem)="removeItem( $event )" (deleteItem)="delete( $event )" (detailItem)="details()" [item]="item" *ngFor="let item of items | async"></app-element-card>
+            <app-card [caller]="CARPETA_FILES" (addItem)="addItemToList( $event )" (itemId)="setCurrentItem( $event )" (removeItem)="removeItem( $event )" (deleteItem)="delete( $event )" (detailItem)="details()" [item]="item" *ngFor="let item of items | async"></app-card>
         </div>
 
 
