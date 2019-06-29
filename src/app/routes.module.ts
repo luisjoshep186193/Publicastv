@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: 'mytv', component: MytvComponent},
     {path: 'playlists', component: PlaylistComponent},
     {path: 'mytv', component: MytvComponent},
-    {path: 'element/new', component: NewComponent},
+    {path: 'elements/new', component: NewComponent},
     {path: 'playlist/create', component: CreateComponent},
     {path: '**', pathMatch: 'full' , redirectTo: 'tvs'}
     ];
