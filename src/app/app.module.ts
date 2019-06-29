@@ -7,6 +7,8 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 // servicios
 
@@ -41,6 +43,8 @@ import { CardComponent } from './components/card/card.component';
     RoutesModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    HttpClientModule,
+    FormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],

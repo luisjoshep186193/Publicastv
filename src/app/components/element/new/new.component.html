@@ -1,65 +1,86 @@
-<div class="card" style="background-color: rgb(35, 35, 75)">
-
-    <!-- Card image -->
-
-
-    <!-- Card content -->
-    <div class=" card-body ">
-        <div class="row ">
-            <div [ngClass]="{ 'col-sm-3 col-lg-3': !callerElement(), 'col-sm-10 col-lg-10' : callerElement()} ">
-                <img *ngIf="item.url " [ngClass]="{ 'imagen': !callerElement(), 'img-thumbnail':callerElement()} " [src]="item.url " alt="Card image cap ">
-            </div>
-            <div [ngClass]="{ 'col-sm-9 col-lg-9': !callerElement(), 'col-sm-2 col-lg-2' : callerElement()} ">
-                <button (click)="delete() " *ngIf="callerElement() || callerLists() || callerTvs() " class="close ">X</button>
-            </div>
-            <div [ngClass]="{ 'col-md-12 col-lg-12': !callerElement(), 'col-md-12' : callerElement()} ">
-
-                <h4 *ngIf="item.name " class="text-right bg "><small>Name: </small>{{item.name}}</h4>
-                <h4 *ngIf="item.title " class="text-right "><small>Name: </small>{{item.title}}</h4>
-            </div>
-
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Nuevo Elemento</h3>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-danger btn-block" routerLink="/elements">Regresar</button>
         </div>
 
-        <h5 *ngIf="item.duration " class="card-text text-right "><a><small>Duración</small>: {{item.duration}} seg.</a></h5>
-        <a *ngIf="callerElement()" [href]="item.url" class="btn col-md-6 btn-block btn-primary">Editar</a>
-
-        <!-- Text -->
-        <div *ngIf="item.elements && item.elements.length> 0" class="container elements">
-            <br>
-            <h4>Elements:</h4>
-            <div *ngFor="let element of item.elements">
-
-                <h5>{{element.name}}{{element.title}}<small> - {{element.duration}} seg</small><button *ngIf="!callerInsideTvs()" (click)="remove(element)">X</button></h5>
-            </div>
-            <br>
-        </div>
-        <!-- Button -->
-        <br>
-        <div class="row">
-
-
-
-            <button (click)="add()" *ngIf="callerListElement() || callerInsideTvs()" class="btn col-md-6 btn-block btn-success">Add</button>
-            <button (click)="sendItemId()" *ngIf="callerTvs() || callerLists()" type="button" class="btn btn-block btn-warning" data-toggle="modal" data-target="#modalCookie1">Elements</button>
-        </div>
     </div>
-    <!--<div class="card" >
+    <hr>
 
-      <div class="card-body">
-          <h4 class="card-title">Id: <a>{{item.id}}</a></h4>
-       
-          <h4 class="card-title">Nombre: <a>{{item.title}}</a></h4>
-    
-          <h5 class="card-title">Duración: <a>{{item.duration}} <small> {{item.type}}</small></a></h5>
+    <div class="col">
+        <div class="row">
+            <div appNgDropFiles [archivos]="archivos" (mouseSobre)="estaSobreElemento = $event" [ngClass]="{ 'file-over': estaSobreElemento}" class="col-md-4 well drop-zone">
+                <label>Suelta Archivo aquí</label>
+                <br>
+                <img src="assets/drop-images.png " alt=" ">
+            </div>
+            <div class="col-md-8 ">
+                <button (click)="cargarImagenes() " [disabled]="archivos.length===0 " class="btn btn-success ">Cargar</button>
 
-  
-          <div class="row">
-              <button (click)="details(item.id)" class="btn col-md-6 btn-block btn-primary">Elements</button>
-              <button (click)="delete(item.id)" class="btn col-md-6 btn-block btn-danger">Delete</button>
-          </div>
+                <button (click)="borrarElementos()" class="btn btn-warning ">Limpiar</button>
+                <table class="table ">
+                    <thead class="thead-dark ">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Duración</th>
+                            <th>Tamaño</th>
+                            <th>Progreso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let archivo of archivos">
+                            <td [ngClass]=" {'text-green': archivo.progreso >= 100}">{{ archivo.nombreArchivo }}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-7"><input class="form-control" type="number" placeholder="Segundos" [(ngModel)]="archivo.duration" name="duration" #duration="ngModel" min="0" pattern="^\d+$" required></div>
+                                    <div class="col-md-5"><a> seg.</a></div>
+                                </div>
+                            </td>
+                            <td>{{ archivo.archivo.size / 1024 / 1024 | number: '.2-2' }} MB</td>
 
-      </div>
+                            <td>
+                                <div class="progress ">
+                                    <div class="progress-bar " role="progressbar " [ngStyle]="{ 'width': archivo.progreso + '%' }"><small>{{ archivo.progreso| number : '.0-0'}}%</small></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
 
-  </div>-->
+                </table>
+            </div>
 
+        </div>
+        <!--form (ngSubmit)="guardar(f)" #f="ngForm">
+
+            <div class="form-group ">
+                <label>Firebase ID</label>
+                <input type="text " class="form.control " placeholder="FirebaseID " [(ngModel)]="element.id " name="id " disabled="disabled "><small>Campo autogenerado</small>
+            </div>
+            <div class="form-group ">
+                <label>Nombre</label>
+                <input type="text " class="form-control " placeholder="Nombre del elemento " [(ngModel)]="element.name " name="nombre " required>
+
+            </div>
+            <div class="form-group ">
+                <label>Descripción</label>
+                <input type="text " class="form-control " placeholder="Breve descripción del elemento " [(ngModel)]="element.description " name="description " required>
+
+            </div>
+            <div class="form-group ">
+                <label>Duración</label>
+                <input type="number " class="form-control " placeholder="En segundos " [(ngModel)]="element.duration " name="duration " required>
+
+            </div>
+            <div class="form-group ">
+                <button type="submit " class="btn btn-primary ">Guardar</button>
+
+            </div>
+
+
+        </form-->
+    </div>
 </div>
