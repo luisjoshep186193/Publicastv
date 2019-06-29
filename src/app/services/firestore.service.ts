@@ -37,5 +37,31 @@ export class FirestoreService {
       console.log('elements: ', this.elements);
       return this.elements;
   }
+  public getStringArray (elementType: string) {
+    let retrievedObject = localStorage.getItem(elementType);
+    retrievedObject = retrievedObject.substring(0, retrievedObject.length - 3) + '"';
+    const cadena = JSON.parse(retrievedObject);
+    return cadena.split('.,');
+  }
+  public guardarFile(file: any, ruta: string) {
 
-}
+    this.db.collection(`/${ruta}`).add(file);
+    this.getCollection(file);
+  }
+
+  getLists(collectionName: string) {
+    this.newElements = undefined;
+    this.newElements = [];
+    this.elementsId = this.elementsId.splice(0, this.elementsId.length);
+    const splitted = this.getStringArray(collectionName);
+    splitted.forEach(element => {
+       const nuevoElemtoID: ElementId = JSON.parse(element);
+       if (!this.newElements.find(e => e.id === nuevoElemtoID.id)) {
+        this.newElements.push(nuevoElemtoID);
+        console.log('added: ', nuevoElemtoID.id);
+       }
+    });
+    console.log('elementIds: ', this.elementsId);
+     return this.newElements;
+  }
+  }
