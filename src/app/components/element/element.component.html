@@ -1,3 +1,25 @@
-<p>
-  element works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Lista de elementos</h1>
+            <hr/>
+        </div>
+        <div class="col-md-3">
+            <button *ngIf="!callerLists()" class="btn btn-block btn-success" routerLink="/element/nuevo">
+          <i class="fa fa-plus"></i>
+          Nuevo
+        </button>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="card-columns">
+            <!--*ngFor="let item of items | async"-->
+            <app-element-card (deleteItem)="delete( $event )" (addItem)="addItemToList($event)" [caller]="caller" [item]="item" *ngFor="let item of items | async"></app-element-card>
+
+        </div>
+
+
+    </div>
+</div>

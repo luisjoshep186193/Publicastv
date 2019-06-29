@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-element',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ElementComponent implements OnInit {
 
-  constructor() { }
+  constructor(public db: FirestoreService) { }
 
   ngOnInit() {
   }

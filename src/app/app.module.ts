@@ -8,6 +8,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+// servicios
+
+import { FirestoreService } from './services/firestore.service'
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TvComponent } from './components/tv/tv.component';
@@ -40,7 +44,9 @@ import { CardComponent } from './components/card/card.component';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [],
+  providers: [
+    FirestoreService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

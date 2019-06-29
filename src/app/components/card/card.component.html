@@ -1,3 +1,65 @@
-<p>
-  card works!
-</p>
+<div class="card" style="background-color: rgb(35, 35, 75)">
+
+    <!-- Card image -->
+
+
+    <!-- Card content -->
+    <div class=" card-body ">
+        <div class="row ">
+            <div [ngClass]="{ 'col-sm-3 col-lg-3': !callerElement(), 'col-sm-10 col-lg-10' : callerElement()} ">
+                <img *ngIf="item.url " [ngClass]="{ 'imagen': !callerElement(), 'img-thumbnail':callerElement()} " [src]="item.url " alt="Card image cap ">
+            </div>
+            <div [ngClass]="{ 'col-sm-9 col-lg-9': !callerElement(), 'col-sm-2 col-lg-2' : callerElement()} ">
+                <button (click)="delete() " *ngIf="callerElement() || callerLists() || callerTvs() " class="close ">X</button>
+            </div>
+            <div [ngClass]="{ 'col-md-12 col-lg-12': !callerElement(), 'col-md-12' : callerElement()} ">
+
+                <h4 *ngIf="item.name " class="text-right bg "><small>Name: </small>{{item.name}}</h4>
+                <h4 *ngIf="item.title " class="text-right "><small>Name: </small>{{item.title}}</h4>
+            </div>
+
+        </div>
+
+        <h5 *ngIf="item.duration " class="card-text text-right "><a><small>Duración</small>: {{item.duration}} seg.</a></h5>
+        <a *ngIf="callerElement()" [href]="item.url" class="btn col-md-6 btn-block btn-primary">Editar</a>
+
+        <!-- Text -->
+        <div *ngIf="item.elements && item.elements.length> 0" class="container elements">
+            <br>
+            <h4>Elements:</h4>
+            <div *ngFor="let element of item.elements">
+
+                <h5>{{element.name}}{{element.title}}<small> - {{element.duration}} seg</small><button *ngIf="!callerInsideTvs()" (click)="remove(element)">X</button></h5>
+            </div>
+            <br>
+        </div>
+        <!-- Button -->
+        <br>
+        <div class="row">
+
+
+
+            <button (click)="add()" *ngIf="callerListElement() || callerInsideTvs()" class="btn col-md-6 btn-block btn-success">Add</button>
+            <button (click)="sendItemId()" *ngIf="callerTvs() || callerLists()" type="button" class="btn btn-block btn-warning" data-toggle="modal" data-target="#modalCookie1">Elements</button>
+        </div>
+    </div>
+    <!--<div class="card" >
+
+      <div class="card-body">
+          <h4 class="card-title">Id: <a>{{item.id}}</a></h4>
+       
+          <h4 class="card-title">Nombre: <a>{{item.title}}</a></h4>
+    
+          <h5 class="card-title">Duración: <a>{{item.duration}} <small> {{item.type}}</small></a></h5>
+
+  
+          <div class="row">
+              <button (click)="details(item.id)" class="btn col-md-6 btn-block btn-primary">Elements</button>
+              <button (click)="delete(item.id)" class="btn col-md-6 btn-block btn-danger">Delete</button>
+          </div>
+
+      </div>
+
+  </div>-->
+
+</div>
