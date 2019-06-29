@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 
 // servicios
 
-import { FirestoreService } from './services/firestore.service'
+import { FirestoreService } from './services/firestore.service';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -24,6 +25,8 @@ import { CreateComponent } from './components/playlist/create/create.component';
 import { MytvComponent } from './components/mytv/mytv.component';
 import { RoutesModule } from './routes.module';
 import { CardComponent } from './components/card/card.component';
+import { InitplaylistService } from './services/initplaylist.service';
+import { NavbarService } from './services/navbar.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,9 @@ import { CardComponent } from './components/card/card.component';
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
-    FirestoreService
+    FirestoreService,
+    InitplaylistService,
+    NavbarService
   ],
   bootstrap: [AppComponent]
 })
