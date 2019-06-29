@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ElementsService } from 'src/app/services/elements.service';
-import { FileModel } from '../../../../models/file.model';
+import { FileModel } from 'src/app/models/file.model';
+import { ElementModel } from 'src/app/models/element.model';
+
 
 @Component({
   selector: 'app-new',

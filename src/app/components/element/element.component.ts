@@ -3,6 +3,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { ElementId } from 'src/app/interfaces/element.interface';
+import { ElementsService } from 'src/app/services/elements.service';
 
 
 @Component({
